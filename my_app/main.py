@@ -25,10 +25,8 @@ def read_objectives(db: Session = Depends(get_db)):
 
 @app.post("/objectives/")
 def create_objective(objective: schemas.ObjectiveBase, db: Session = Depends(get_db)):
-    print("qqqqqqqqqqqqqqq")
-    test = crud.create_objective(db=db, objective=objective)
-    print(test)
-    return test
+    db_objective = crud.create_objective(db=db, objective=objective)
+    return db_objective
 
 
 @app.put("/objectives/{objective_id}")
