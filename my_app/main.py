@@ -19,7 +19,7 @@ def get_db():
 
 
 @app.get("/objectives/")
-def read_objectives(db: Session = Depends(get_db)):
+def get_objectives(db: Session = Depends(get_db)):
     return db.query(models.Objective).all()
 
 
@@ -39,7 +39,7 @@ def update_objective(objective_id: int, objective: schemas.ObjectiveBase, db: Se
 
 
 @app.delete("/objectives/{objective_id}")
-def update_objective(objective_id: int, db: Session = Depends(get_db)):
+def delete_objective(objective_id: int, db: Session = Depends(get_db)):
     db_objective = crud.delete_objective(db, objective_id=objective_id)
     if db_objective:
         return db_objective
